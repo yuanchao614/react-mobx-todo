@@ -36,3 +36,83 @@
     transform: rotate(360deg);
   }
 }
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-app {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  max-width: 600px;
+  width: 500px;
+}
+.todo-input {
+  height: 24px;
+  width: 182px;
+}
+.add-btn {
+  margin-left: 10px;
+  cursor: pointer;
+  height: 30px;
+}
+
+.check-box {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  height: 150px;
+  padding: 0;
+}
+
+.todo-list .todo-item {
+  padding-bottom: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  border-bottom: 1px solid #ededed;
+  width: 100%;
+  text-align: left;
+}
+
+.todoed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.visibility-filters {
+  display: flex;
+  justify-content: start;
+}
+
+.visibility-filters .filter-item {
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.visibility-filters .filter-item.active {
+  border: 1px solid salmon;
+  color: salmon;
+}
+
+.visibility-filters .filter-item:hover {
+  border: 1px solid salmon;
+  color: salmon;
+}
