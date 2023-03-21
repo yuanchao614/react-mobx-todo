@@ -1,4 +1,4 @@
-import { makeObservable, observable, computed, runInAction } from "mobx"
+import { makeAutoObservable } from "mobx"
 import { VISIBILITY_FILTERS } from '../constants'
 interface ITodoItem {
   completed: boolean
@@ -11,17 +11,14 @@ interface IByIds {
 }
 export class TodoStore {
   allIds: number[] = []
-  // todos: TodoItem[] = []
   byIds: IByIds = {}
   newId: number = 0
   activeFilter: string = 'all'
 
   constructor(allIds: number[], byIds: IByIds, newId: number) {
-    makeObservable(this, {
-      allIds: observable,
-      byIds: observable,
-      activeFilter: observable,
-      todos: computed
+    makeAutoObservable(this, {
+    }, {
+      autoBind: true
     })
     this.allIds = allIds
     this.byIds = byIds
@@ -45,9 +42,14 @@ export class TodoStore {
   }
 
   setFilter(filter: string) {
-    runInAction(() => {
-      this.activeFilter = filter
-    })
+    this.activeFilter = filter
+  }
+
+  reset() {
+    this.allIds = []
+    this.byIds = {}
+    this.newId = 0
+    this.activeFilter = 'all'
   }
 
   get todos() {

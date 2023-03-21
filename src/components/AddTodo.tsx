@@ -2,7 +2,6 @@ import { observer } from "mobx-react";
 import { useState } from "react";
 import { useContext } from 'react'
 import { TodoContext } from "../store";
-import { runInAction } from 'mobx'
 
 // interface IPropsType {
 //   todoStore: TodoStore;
@@ -37,7 +36,7 @@ function AddTodo() {
         onChange={(e) => inputChange(e.target.value)}
         placeholder="请输入"
       ></input>
-      <button className="add-todo__button" onClick={() => runInAction(() => handleAddTodo())}>
+      <button className="add-todo__button" onClick={() => handleAddTodo()}>
         AddTodo
       </button>
     </div>

@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import cx from "classnames";
-import { TodoStore } from "../store/TodoStore";
 import { observer } from "mobx-react-lite";
 import { TodoContext } from "../store";
-import { runInAction } from 'mobx'
 
 interface ITodoItem {
   id?: number;
@@ -18,9 +16,10 @@ interface IPropsType {
 
 function Todo({ todo, index }: IPropsType) {
   const todoStore = useContext(TodoContext)
+  const { toggleTodo } = todoStore
   return (
     <li
-      onClick={() => runInAction(() => todoStore.toggleTodo(todo.id || 0))}
+      onClick={() => toggleTodo(todo.id || 0)}
       className={cx("todo-item", {
         "todo-item--completed": todo.completed,
       })}

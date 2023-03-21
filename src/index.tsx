@@ -1,23 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { TodoContext } from './store/index'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { TodoContext } from "./store/index";
 // import { createContext, useContext } from 'react'
 // import { TodoStore } from './store/TodoStore';
-import todoStore from './store/TodoStore';
+import todoStore from "./store/TodoStore";
 // const TodoContext = createContext<TodoStore>(todoStore)
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-
-<TodoContext.Provider value={todoStore}>
-<App />
-    </TodoContext.Provider>,
+    <TodoContext.Provider value={todoStore}>
+      <App />
+    </TodoContext.Provider>
   </React.StrictMode>
 );
 

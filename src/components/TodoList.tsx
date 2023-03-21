@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import cx from "classnames";
 import Todo from "./Todo";
-import { TodoStore } from "../store/TodoStore";
 import { observer } from "mobx-react-lite";
 import { TodoContext } from "../store";
 
@@ -11,12 +10,13 @@ import { TodoContext } from "../store";
 
 const TodoList = () => {
   const todoStore = useContext(TodoContext)
+  const { todos } = todoStore
 
   return (
     <ul className="todo-list">
       {todoStore.todos && todoStore.todos.length ? (
         <div key={1}>
-          {todoStore.todos.map((todo, index) => (
+          {todos.map((todo, index) => (
             <Todo
               todo={todo}
               index={index + 1}
