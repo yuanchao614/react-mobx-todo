@@ -1,28 +1,34 @@
-import React from 'react'
-import cx from 'classnames'
-import { TodoStore } from '../store/TodoStore'
-import { VISIBILITY_FILTERS } from '../constants'
-import { observer } from 'mobx-react-lite'
+import { useContext } from "react";
+import cx from "classnames";
+// import { TodoStore } from "../store/TodoStore";
+import { TFilter, VISIBILITY_FILTERS } from "../constants";
+import { observer } from "mobx-react-lite";
+import { TodoContext } from "../store";
 
-interface PropsType {
-    todoStore: TodoStore
-}
+// interface PropsType {
+//   todoStore: TodoStore;
+// }
 
+const VisibilityFilters = () => {
+  const todoStore = useContext(TodoContext)
 
-const VisibilityFilters = ({ todoStore }: PropsType) => {
-    debugger
-    return (
-       <div className="visibility-filters">
-           {
-               Object.keys(VISIBILITY_FILTERS).map((item, index) => {
-                //    debugger
-                   return <span key={index} className={cx('filter-item', { 'active': todoStore.activeFilter === VISIBILITY_FILTERS[item]})} onClick={() => todoStore.setFilter(VISIBILITY_FILTERS[item])}>{VISIBILITY_FILTERS[item]}</span>
-               })
-           }
-       </div>
-    )
-}
+  return (
+    <div className="visibility-filters">
+      {Object.keys(VISIBILITY_FILTERS).map((item: TFilter | string) => {
+        return (
+          <span
+            key={item}
+            className={cx("visibility-filters__item", {
+              'visibility-filters__item--active': todoStore.activeFilter === VISIBILITY_FILTERS[item as TFilter],
+            })}
+            onClick={() => todoStore.setFilter(VISIBILITY_FILTERS[item as TFilter])}
+          >
+            {VISIBILITY_FILTERS[item as TFilter]}
+          </span>
+        );
+      })}
+    </div>
+  );
+};
 
-
-
-export default observer(VisibilityFilters)
+export default observer(VisibilityFilters);

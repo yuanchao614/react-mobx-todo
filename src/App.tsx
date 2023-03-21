@@ -5,15 +5,16 @@ import AddTodo from './components/AddTodo';
 import TodoStore from './store/TodoStore';
 import TodoList from './components/TodoList';
 import VisibilityFilters from './components/VisibilityFilters';
+import { observer } from 'mobx-react-lite'
 
 function App() {
   return (
     <div className="todo-app">
-      <AddTodo todoStore={TodoStore} />
-      <TodoList todoStore={TodoStore} />
-      <VisibilityFilters todoStore={TodoStore} />
+      <AddTodo />
+      <TodoList />
+      <VisibilityFilters />
     </div>
   );
 }
 
-export default App;
+export default observer(App);

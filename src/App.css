@@ -51,22 +51,16 @@
   max-width: 600px;
   width: 500px;
 }
-.todo-input {
+
+.add-todo__field {
   height: 24px;
   width: 182px;
 }
-.add-btn {
+.add-todo__button {
   margin-left: 10px;
   cursor: pointer;
   height: 30px;
 }
-
-.check-box {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
 
 .todo-list {
   display: flex;
@@ -80,6 +74,10 @@
   padding: 0;
 }
 
+.todo-list .todo-list__empty {
+  font-size: 20px;
+}
+
 .todo-list .todo-item {
   padding-bottom: 10px;
   cursor: pointer;
@@ -88,8 +86,13 @@
   width: 100%;
   text-align: left;
 }
+.todo-list .todo-item .todo-item__field {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
 
-.todoed {
+.todo-list .todo-item.todo-item--completed {
   text-decoration: line-through;
   color: gray;
 }
@@ -99,7 +102,7 @@
   justify-content: start;
 }
 
-.visibility-filters .filter-item {
+.visibility-filters .visibility-filters__item {
   display: inline-block;
   padding: 5px 10px;
   cursor: pointer;
@@ -107,12 +110,12 @@
   font-size: 20px;
 }
 
-.visibility-filters .filter-item.active {
+.visibility-filters .visibility-filters__item--active {
   border: 1px solid salmon;
   color: salmon;
 }
 
-.visibility-filters .filter-item:hover {
+.visibility-filters .visibility-filters__item:hover {
   border: 1px solid salmon;
   color: salmon;
 }

@@ -1,22 +1,22 @@
-import { makeObservable, observable, computed, action, flow } from "mobx"
-
-interface TodoItem {
+import { makeObservable, observable, computed, runInAction } from "mobx"
+import { VISIBILITY_FILTERS } from '../constants'
+interface ITodoItem {
   completed: boolean
   content: string
   id?: number
 }
 
-interface ByIds {
-  [key: number]: TodoItem
+interface IByIds {
+  [key: number]: ITodoItem
 }
 export class TodoStore {
   allIds: number[] = []
   // todos: TodoItem[] = []
-  byIds: ByIds = {}
+  byIds: IByIds = {}
   newId: number = 0
   activeFilter: string = 'all'
 
-  constructor(allIds: number[], byIds: ByIds, newId: number) {
+  constructor(allIds: number[], byIds: IByIds, newId: number) {
     makeObservable(this, {
       allIds: observable,
       byIds: observable,
@@ -33,7 +33,6 @@ export class TodoStore {
       ...this.allIds,
       this.newId
     ]
-    debugger
     this.byIds[this.newId] = {
       completed: false,
       content: inputValue
@@ -46,7 +45,9 @@ export class TodoStore {
   }
 
   setFilter(filter: string) {
-    this.activeFilter = filter
+    runInAction(() => {
+      this.activeFilter = filter
+    })
   }
 
   get todos() {
@@ -55,11 +56,11 @@ export class TodoStore {
       id
     }))
     switch (this.activeFilter) {
-      case 'completed': {
+      case VISIBILITY_FILTERS.COMPLETED: {
         return todos.filter(item => item.completed)
       }
 
-      case 'incomplete': {
+      case VISIBILITY_FILTERS.INCOMPLETE: {
         return todos.filter(item => !item.completed)
       }
       default: {
